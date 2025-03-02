@@ -15,21 +15,18 @@ export class SpellService {
     return json._embedded.spells ?? [];
   }
 
-  async getSpellByKey(key: string): Promise<Spell | undefined> {
+  async getSpellByKey(key: string): Promise<Spell> {
     const data = await fetch(`${this.url}/${key}`)
     return (await data.json()) ?? {};
   }
 
   async getSpellsByKey(key: string): Promise<Spell[]> {
-    const data = await fetch(`${this.url}/search/findSpellsByKeyStartsWith?key=${key}`)
-    const json = (await data.json()) ?? [];
-    console.log(json)
-    return json._embedded.spells;
-  }
-
-  submitApplication(firstName: string, lastName: string, email: string){
-    console.log(
-      `Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}`
-    );
+    if (key != ""){
+      const data = await fetch(`${this.url}/search/findSpellsByKeyStartsWith?key=${key.toLowerCase().replaceAll(" ", "")}`)
+      const json = (await data.json()) ?? [];
+      console.log(json)
+      return json._embedded.spells;
+    }
+    else return []
   }
 }

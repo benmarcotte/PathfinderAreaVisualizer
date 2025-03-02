@@ -9,9 +9,9 @@ import { SpellListComponent } from './spell-list/spell-list.component'
     ],
   template: `
     <main>
-      <a [routerLink]="['/']">
-        <header class="brand-name">
-          <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
+      <a [routerLink]="['/']" class="heading">
+        <header>
+          Pathfinder 2e Area Visualiser
         </header>
       </a>
       <section class="content">
@@ -22,5 +22,5 @@ import { SpellListComponent } from './spell-list/spell-list.component'
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Visailiser';
+  title = 'Visualiser';
 }

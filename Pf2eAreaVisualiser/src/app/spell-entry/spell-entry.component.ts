@@ -8,9 +8,10 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-  <section class="listing">
-    <h2 class="listing-heading">{{ spell.name }}</h2>
-    <p class="listing-location">{{ spell.value }}-foot {{spell.area }}</p>
+  <section class="spell">
+    <h2 class="spell-heading">{{ spell.name }}</h2>
+    <p class="spell-entry">{{ spell.value }}-foot {{spell.area }}</p>
+    <a [routerLink]="['/', spell.name]">Learn More</a>
   </section>
   `,
   styleUrls: ['./spell-entry.component.css'],
@@ -18,5 +19,3 @@ import { RouterModule } from '@angular/router';
 export class SpellComponent {
   @Input() spell!: Spell
 }
-
-//<a [routerLink]="['/details', spell.name]">Learn More</a>

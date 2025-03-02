@@ -34,30 +34,13 @@ export class SpellListComponent {
   spellService: SpellService = inject(SpellService);
   filteredSpellList: Spell[] = [];
   searchText: any;
-
-  constructor() {
-    this.spellService.getAllSpells().then((housingLocationList: Spell[]) => {
-      this.spellList = housingLocationList;
-      this.filteredSpellList = housingLocationList;
-    });
-  }
-
+  
   onFilterBoxChagned() {
     if (this.searchText != ""){
       this.spellService.getSpellsByKey(this.searchText).then((filteredSpellList: Spell[]) => {
         this.filteredSpellList = filteredSpellList
       });
     }
-  }
-
-  filterResults(text: string) {
-    if (!text) {
-      this.filteredSpellList = this.spellList;
-      return;
-    }
-
-    this.filteredSpellList = this.spellList.filter((housingLocation) =>
-      housingLocation?.area.toLowerCase().includes(text.toLowerCase()),
-    );
+    else this.filteredSpellList = [];
   }
 }
